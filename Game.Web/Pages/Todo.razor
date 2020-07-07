@@ -1,7 +1,5 @@
 ﻿@page "/todo"
 
-@using Game.Web.Data
-
 <h3>Todo (@todos.Count(c => !c.IsDone))</h3>
 
 <input type="text" placeholder="Something todo" @bind="newTodo">

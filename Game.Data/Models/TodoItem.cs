@@ -1,4 +1,4 @@
-namespace Game.Web.Data
+namespace Game.Data.Models
 {
     public class TodoItem
     {
