@@ -2,7 +2,7 @@
 
 @inject ICountry countryService
 
-<h3>Countries</h3>
+<h2>Countries</h2>
 
 <NavLink class="nav-link" href="AddCountry">
     <span class="oi oi-plus" aria-hidden="true"></span> Add New
@@ -29,7 +29,7 @@ else
            {
                <tr>
                    <td>@item.Name</td>
-                   <td>@item.IsActive</td>
+                   <td>@item.Active</td>
                    <td>@item.Registration</td>
                    <td>@item.Modification</td>
                    <td>
