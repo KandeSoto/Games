@@ -83,6 +83,15 @@ C:\Users\Candelario\Desktop\Games\Game.Web\bin\Debug\netcoreapp3.1\runtimes\win-
 C:\Users\Candelario\Desktop\Games\Game.Web\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Candelario\Desktop\Games\Game.Web\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Candelario\Desktop\Games\Game.Web\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Candelario\Desktop\Games\Game.Web\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Candelario\Desktop\Games\Game.Web\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Country\AddCountry.razor.g.cs
+C:\Users\Candelario\Desktop\Games\Game.Web\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Country\DeleteCountry.razor.g.cs
+C:\Users\Candelario\Desktop\Games\Game.Web\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Country\EditCountry.razor.g.cs
+C:\Users\Candelario\Desktop\Games\Game.Web\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Country\Index.razor.g.cs
+C:\Users\Candelario\Desktop\Games\Game.Web\obj\Debug\netcoreapp3.1\Razor\Pages\Country\AddCountry.razor.g.cs
+C:\Users\Candelario\Desktop\Games\Game.Web\obj\Debug\netcoreapp3.1\Razor\Pages\Country\DeleteCountry.razor.g.cs
+C:\Users\Candelario\Desktop\Games\Game.Web\obj\Debug\netcoreapp3.1\Razor\Pages\Country\EditCountry.razor.g.cs
+C:\Users\Candelario\Desktop\Games\Game.Web\obj\Debug\netcoreapp3.1\Razor\Pages\Country\Index.razor.g.cs
 C:\Users\Candelario\Desktop\Games\Game.Web\bin\Debug\netcoreapp3.1\Game.Data.dll
 C:\Users\Candelario\Desktop\Games\Game.Web\bin\Debug\netcoreapp3.1\Game.Logic.dll
 C:\Users\Candelario\Desktop\Games\Game.Web\bin\Debug\netcoreapp3.1\Game.Logic.pdb

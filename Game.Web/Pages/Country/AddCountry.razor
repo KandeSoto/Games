@@ -1,0 +1,42 @@
+﻿@page "/AddCountry"
+
+@inject ICountry countryService
+@inject NavigationManager navigationManager
+
+<h3>Add Country</h3>
+<hr />
+
+<form>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="Name" class="control-label">Name</label>
+                <input for="Name" class="form-control" @bind="@obj.Name" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="button" class="btn btn-primary" @onclick="@CreateCountry" value="Save" />
+                <input type="button" class="btn btn-secondary" @onclick="@Cancel" value="Cancel" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@code {
+    Country obj = new Country();
+
+    protected async void CreateCountry()
+    {
+        obj.Registration = DateTime.Now;
+        await countryService.AddCountry(obj);
+        navigationManager.NavigateTo("countries");
+    }
+
+    void Cancel()
+    {
+        navigationManager.NavigateTo("countries");
+    }
+}

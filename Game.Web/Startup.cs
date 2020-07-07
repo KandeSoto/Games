@@ -10,8 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Game.Web.Data;
-using Game.Data.Models;
+using Game.Data;
+using Game.Logic.Repositories.Contracts;
+using Game.Logic.Repositories.Services;
 
 namespace Game.Web
 {
@@ -29,11 +30,14 @@ namespace Game.Web
         public void ConfigureServices(IServiceCollection services)
         {
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<GamesContext>(c => c.UseSqlServer(connectionString));
+            services.AddDbContext<GamesContext>(options => options.UseSqlServer(connectionString));
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            //services.AddSingleton<WeatherForecastService>();
+
+            //services.AddScoped<CountryService>();
+            services.AddScoped<ICountry, CountryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

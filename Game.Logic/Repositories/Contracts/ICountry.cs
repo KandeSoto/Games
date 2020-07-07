@@ -6,10 +6,10 @@ namespace Game.Logic.Repositories.Contracts
 {
     public interface ICountry
     {
-        Task<List<Countries>> GetCountries();
-        Task<Countries> GetCountry(int id);
-        Task<bool> AddCountry(Countries Model);
-        Task<bool> UpdateCountry(Countries Model);
+        Task<List<Country>> GetCountries();
+        Task<Country> GetCountry(int id);
+        Task<bool> AddCountry(Country Model);
+        Task<bool> UpdateCountry(Country Model);
         Task<bool> DeleteCountry(int id);
     }
 }

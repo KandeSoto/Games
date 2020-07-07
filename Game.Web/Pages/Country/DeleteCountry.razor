@@ -1,0 +1,48 @@
+﻿@page "/DeleteCountry/{CountryId}"
+
+@inject ICountry countryService
+@inject NavigationManager navigationManager
+
+<h2>Delete Country</h2>
+<hr />
+<h3>Are you sure want to delete this?</h3>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="form-group">
+            <label>Name:</label>
+            <label>@obj.Name</label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <input type="button" class="btn btn-danger" @onclick="@RemoveCountry" value="Delete" />
+            <input type="button" class="btn btn-secondary" @onclick="@Cancel" value="Cancel" />
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string CountryId { get; set; }
+
+    Country obj = new Country();
+
+    protected override async Task OnInitializedAsync()
+    {
+        obj = await Task.Run(() => countryService.GetCountry(Convert.ToInt32(CountryId)));
+    }
+
+    protected async void RemoveCountry()
+    {        
+        await countryService.DeleteCountry(Convert.ToInt32(CountryId));
+        navigationManager.NavigateTo("countries");
+    }
+
+    void Cancel()
+    {
+        navigationManager.NavigateTo("countries");
+    }
+}

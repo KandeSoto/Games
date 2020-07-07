@@ -72,6 +72,20 @@ using Game.Web.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 10 "C:\Users\Candelario\Desktop\Games\Game.Web\_Imports.razor"
+using Game.Data.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "C:\Users\Candelario\Desktop\Games\Game.Web\_Imports.razor"
+using Game.Logic.Repositories.Contracts;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/counter")]
     public partial class Counter : Microsoft.AspNetCore.Components.ComponentBase
     {

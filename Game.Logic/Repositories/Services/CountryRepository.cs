@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Game.Data;
 using Game.Data.Models;
 using Game.Logic.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ namespace Game.Logic.Repositories.Services
             context = _ctx;
         }
 
-        public async Task<bool> AddCountry(Countries Model)
+        public async Task<bool> AddCountry(Country Model)
         {
             await context.Countries.AddAsync(Model);
             await context.SaveChangesAsync();
@@ -30,17 +31,17 @@ namespace Game.Logic.Repositories.Services
             return true;
         }
 
-        public async Task<List<Countries>> GetCountries()
+        public async Task<List<Country>> GetCountries()
         {
             return await context.Countries.ToListAsync();
         }
 
-        public async Task<Countries> GetCountry(int id)
+        public async Task<Country> GetCountry(int id)
         {
             return await context.Countries.FindAsync(id);
         }
 
-        public async Task<bool> UpdateCountry(Countries Model)
+        public async Task<bool> UpdateCountry(Country Model)
         {
             context.Countries.Update(Model);
             await context.SaveChangesAsync();

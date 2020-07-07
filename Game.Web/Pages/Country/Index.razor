@@ -1,0 +1,56 @@
+﻿@page "/countries"
+
+@inject ICountry countryService
+
+<h3>Countries</h3>
+
+<NavLink class="nav-link" href="AddCountry">
+    <span class="oi oi-plus" aria-hidden="true"></span> Add New
+</NavLink>
+
+@if(countriesList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Active</th>
+                <th>Registration</th>
+                <th>Modification</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+           @foreach (var item in countriesList)
+           {
+               <tr>
+                   <td>@item.Name</td>
+                   <td>@item.IsActive</td>
+                   <td>@item.Registration</td>
+                   <td>@item.Modification</td>
+                   <td>
+                       <a class="nav-link" href="EditCountry/@item.CountryId">
+                            <span class="oi oi-pencil" aria-hidden="true"></span> Edit
+                       </a>
+                       <a class="nav-link" href="DeleteCountry/@item.CountryId">
+                            <span class="oi oi-trash" aria-hidden="true"></span> Delete
+                       </a>
+                   </td>
+               </tr>
+           } 
+        </tbody>
+    </table>
+}
+
+@code {
+    List<Country> countriesList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        countriesList = await Task.Run(() => countryService.GetCountries());
+    }
+}   

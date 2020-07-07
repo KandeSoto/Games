@@ -73,6 +73,20 @@ using Game.Web.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 10 "C:\Users\Candelario\Desktop\Games\Game.Web\_Imports.razor"
+using Game.Data.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "C:\Users\Candelario\Desktop\Games\Game.Web\_Imports.razor"
+using Game.Logic.Repositories.Contracts;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "C:\Users\Candelario\Desktop\Games\Game.Web\Pages\Todo.razor"
 using Game.Web.Data;
 

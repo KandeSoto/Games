@@ -166,9 +166,6 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Candelario\\Desktop\\Games\\Game.Data\\Game.Data.csproj": {
-                "projectPath": "C:\\Users\\Candelario\\Desktop\\Games\\Game.Data\\Game.Data.csproj"
-              },
               "C:\\Users\\Candelario\\Desktop\\Games\\Game.Logic\\Game.Logic.csproj": {
                 "projectPath": "C:\\Users\\Candelario\\Desktop\\Games\\Game.Logic\\Game.Logic.csproj"
               }
@@ -185,6 +182,16 @@
         "netcoreapp3.1": {
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.5, )"
             }
