@@ -2,67 +2,96 @@
 
 @inject ICountry countryService
 
-<Card Class="card-container-table shadow p-4 mb-5">
-    <h2>Countries</h2>
-    <div class="row mb-3">
-        <div class="col-3">
-            <label class="control-label">Name:</label>
-            <input type="text" class="form-control" @onkeyup="Filter"/>            
+    <Card Class="card-container-table shadow p-4 mb-5">
+        <h2><span class="oi oi-globe" aria-hidden="true"></span> Countries</h2>
+        <Divider />
+        <div class="row mb-4 mt-4">
+            <div class="col-3 input-group">
+                <label class="control-label font-weight-bold mr-2">Name:</label>
+                <input type="text" class="form-control" @onkeyup="Filter" />
+            </div>
+            <div class="col-3">
+                <label class="control-label font-weight-bold mr-2">
+                    <span class="oi oi-clipboard" aria-hidden="true"></span>
+                    Total: @Total
+                </label>
+                <label class="control-label text-success font-weight-bold mr-2">
+                    <span class="oi oi-circle-check" aria-hidden="true"></span>
+                    Activo: @ActiveTotal
+                </label>
+                <label class="control-label text-danger font-weight-bold">
+                    <span class="oi oi-circle-x" aria-hidden="true"></span>
+                    Inactivo: @InactiveTotal
+                </label>
+            </div>
+            <div class="offset-4 col-2 text-right">
+                <NavLink class="nav-link" href="AddCountry">
+                    <span class="oi oi-plus" aria-hidden="false"></span> Add New
+                </NavLink>
+            </div>
         </div>
-        <div class="offset-7 col-2 text-right">
-            <NavLink class="nav-link" href="AddCountry">
-                <span class="oi oi-plus" aria-hidden="false"></span> Add New
-            </NavLink>
-        </div>
-    </div>
-    @if (countriesList == null)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else
-    {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Active</th>
-                    <th>Registration</th>
-                    <th>Modification</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in countriesList)
-                {
+        @if (countriesList == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>@item.Name</td>
-                        <td>@item.Active</td>
-                        <td>@item.Registration</td>
-                        <td>@item.Modification</td>
-                        <td>
-                            <a class="nav-link" href="EditCountry/@item.CountryId">
-                                <span class="oi oi-pencil" aria-hidden="true"></span> Edit
-                            </a>
-                            <a class="nav-link" href="DeleteCountry/@item.CountryId">
-                                <span class="oi oi-trash" aria-hidden="true"></span> Delete
-                            </a>
-                        </td>
+                        <th>Name</th>
+                        <th>Active</th>
+                        <th>Registration</th>
+                        <th>Modification</th>
+                        <th>Action</th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    }
-</Card>
+                </thead>
+                <tbody>
+                    @foreach (var item in countriesList)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            @if (item.IsActive)
+                            {
+                                <td class="text-success font-weight-bold">@item.Active</td>
+                            }
+                            else
+                            {
+                                <td class="text-danger font-weight-bold">@item.Active</td>
+                            }
+                            <td>@item.Registration</td>
+                            <td>@item.Modification</td>
+                            <td class="input-group">
+                                <a class="nav-link" href="EditCountry/@item.CountryId">
+                                    <span class="oi oi-pencil" aria-hidden="true"></span> Edit
+                                </a>
+                                <a class="nav-link" href="DeleteCountry/@item.CountryId">
+                                    <span class="oi oi-trash" aria-hidden="true"></span> Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </Card>
 
 @code {
     List<Country> countriesList;
     List<Country> oriCountriesList;
     string filterName = string.Empty;
+    int Total = 0;
+    int ActiveTotal = 0;
+    int InactiveTotal = 0;
 
     protected override async Task OnInitializedAsync()
     {
         countriesList = await Task.Run(() => countryService.GetCountries());
         oriCountriesList = countriesList;
+
+        Total = oriCountriesList.Count;
+        ActiveTotal = oriCountriesList.Where(w => w.IsActive == true).Count();
+        InactiveTotal = oriCountriesList.Where(w => w.IsActive == false).Count();
     }
 
     void Filter(KeyboardEventArgs e)
