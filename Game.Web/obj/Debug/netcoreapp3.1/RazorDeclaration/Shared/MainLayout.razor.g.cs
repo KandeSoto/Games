@@ -90,6 +90,20 @@ using Game.Logic.Repositories.Contracts;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 12 "C:\Users\Candelario\Desktop\Games\Game.Web\_Imports.razor"
+using Blazorise;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "C:\Users\Candelario\Desktop\Games\Game.Web\_Imports.razor"
+using Blazorise.DataGrid;
+
+#line default
+#line hidden
+#nullable disable
     public partial class MainLayout : LayoutComponentBase
     {
         #pragma warning disable 1998

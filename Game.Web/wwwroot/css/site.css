@@ -181,3 +181,7 @@ app {
         display: block;
     }
 }
+
+.card-container-table {
+    border-radius: 1em;    
+}

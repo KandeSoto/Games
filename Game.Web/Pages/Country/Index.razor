@@ -2,55 +2,82 @@
 
 @inject ICountry countryService
 
-<h2>Countries</h2>
-
-<NavLink class="nav-link" href="AddCountry">
-    <span class="oi oi-plus" aria-hidden="true"></span> Add New
-</NavLink>
-
-@if(countriesList == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Active</th>
-                <th>Registration</th>
-                <th>Modification</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-           @foreach (var item in countriesList)
-           {
-               <tr>
-                   <td>@item.Name</td>
-                   <td>@item.Active</td>
-                   <td>@item.Registration</td>
-                   <td>@item.Modification</td>
-                   <td>
-                       <a class="nav-link" href="EditCountry/@item.CountryId">
-                            <span class="oi oi-pencil" aria-hidden="true"></span> Edit
-                       </a>
-                       <a class="nav-link" href="DeleteCountry/@item.CountryId">
-                            <span class="oi oi-trash" aria-hidden="true"></span> Delete
-                       </a>
-                   </td>
-               </tr>
-           } 
-        </tbody>
-    </table>
-}
+<Card Class="card-container-table shadow p-4 mb-5">
+    <h2>Countries</h2>
+    <div class="row mb-3">
+        <div class="col-3">
+            <label class="control-label">Name:</label>
+            <input type="text" class="form-control" @onkeyup="Filter"/>            
+        </div>
+        <div class="offset-7 col-2 text-right">
+            <NavLink class="nav-link" href="AddCountry">
+                <span class="oi oi-plus" aria-hidden="false"></span> Add New
+            </NavLink>
+        </div>
+    </div>
+    @if (countriesList == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Active</th>
+                    <th>Registration</th>
+                    <th>Modification</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in countriesList)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Active</td>
+                        <td>@item.Registration</td>
+                        <td>@item.Modification</td>
+                        <td>
+                            <a class="nav-link" href="EditCountry/@item.CountryId">
+                                <span class="oi oi-pencil" aria-hidden="true"></span> Edit
+                            </a>
+                            <a class="nav-link" href="DeleteCountry/@item.CountryId">
+                                <span class="oi oi-trash" aria-hidden="true"></span> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</Card>
 
 @code {
     List<Country> countriesList;
+    List<Country> oriCountriesList;
+    string filterName = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
         countriesList = await Task.Run(() => countryService.GetCountries());
+        oriCountriesList = countriesList;
     }
-}   
+
+    void Filter(KeyboardEventArgs e)
+    {
+        if (e.Key.ToUpper() == "BACKSPACE" && filterName.Length > 0)
+        {
+            filterName = filterName.Remove(filterName.Length-1);
+        }
+        else if(e.Key.Length == 1)
+        {
+            filterName = filterName + e.Key;
+        }
+
+        countriesList = oriCountriesList;
+        countriesList = countriesList.Where(w => w.Name.ToUpper().Contains(filterName.ToUpper())).ToList();
+
+    }
+}

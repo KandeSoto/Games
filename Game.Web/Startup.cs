@@ -13,6 +13,9 @@ using Microsoft.EntityFrameworkCore;
 using Game.Data;
 using Game.Logic.Repositories.Contracts;
 using Game.Logic.Repositories.Services;
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 
 namespace Game.Web
 {
@@ -34,9 +37,15 @@ namespace Game.Web
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            //services.AddSingleton<WeatherForecastService>();
 
-            //services.AddScoped<CountryService>();
+            services
+            .AddBlazorise(options =>
+            {
+                options.ChangeTextOnKeyPress = true; // optional
+            })
+            .AddBootstrapProviders()
+            .AddFontAwesomeIcons();
+
             services.AddScoped<ICountry, CountryRepository>();
         }
 
@@ -58,6 +67,10 @@ namespace Game.Web
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.ApplicationServices
+            .UseBootstrapProviders()
+            .UseFontAwesomeIcons();
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,0 +1,48 @@
+﻿@inject ICountry countryService
+@inject NavigationManager navigationManager
+
+<Button Color="Color.Primary" Clicked="@ShowModal"><span class="oi oi-plus" aria-hidden="true"></span> Add New</Button>
+
+<Modal @ref="modalRef">
+    <ModalBackdrop />
+    <ModalContent IsCentered="true">
+        <ModalHeader>
+            <ModalTitle>Add Country</ModalTitle>
+            <CloseButton Clicked="@HideModal" />
+        </ModalHeader>
+        <ModalBody>
+            <Field>
+                <FieldLabel>Name</FieldLabel>
+                <TextEdit Placeholder="Enter name..." @bind-Text="@obj.Name" />
+            </Field>
+        </ModalBody>
+        <ModalFooter>
+            <Button Color="Color.Secondary" Clicked="@HideModal">Close</Button>
+            <Button Color="Color.Primary" Clicked="@CreateCountry">Save Changes</Button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
+
+@code {
+
+    Country obj = new Country();
+
+    protected void CreateCountry()
+    {
+        modalRef.Hide();
+        navigationManager.NavigateTo("countries");
+    }
+
+    // reference to the modal component
+    private Modal modalRef;
+
+    private void ShowModal()
+    {
+        modalRef.Show();
+    }
+
+    private void HideModal()
+    {
+        modalRef.Hide();
+    }
+}
